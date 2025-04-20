@@ -1,4 +1,3 @@
-// Get the request count of the user
 import { prisma } from "@repo/db";
 import { validateRequest } from "../../lib/middleware";
 import { NextResponse } from "next/server";
@@ -9,13 +8,12 @@ export async function GET(req: Request) {
     return NextResponse.json(validation.body, { status: validation.status });
   }
 
-  const user = await prisma.user.findUnique({
-    where: { id: validation.user!.id },
+  const data = await prisma.data.findMany({
+    where: { userId: validation.user!.id },
+    orderBy: { createdAt: "desc" },
   });
 
-  if (!user) {
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
-  }
+  
 
-  return NextResponse.json({ requestCount: user.requestCount });
+  return NextResponse.json(data);
 }
