@@ -1,84 +1,178 @@
-# Turborepo starter
+# FormPilot Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+This is a monorepo for the FormPilot , which includes a custom NPM package for CRUD operations with credit-limited APIs.
 
-## Using this example
+## 📦 Package
 
-Run the following command:
+The package is located in the `packages/crublibrary` directory. It is designed to work with a secure backend powered by PostgreSQL, Prisma, and Next.js.
+The package provides a simple and efficient way to perform CRUD operations with credit-limited APIs.
+The package is built with TypeScript and Axios, making it easy to use and integrate into any frontend or CLI application.
 
-```sh
-npx create-turbo@latest
+---
+
+
+# 🧩 jeet-kiit-crud
+
+A lightweight, developer-friendly **NPM package** for performing **CRUD operations** with credit-limited APIs — built for the FormPilot Internship assignment.
+Designed to work with a secure backend powered by **PostgreSQL, Prisma, and Next.js**.
+
+## 📖 Table of Content
+
+- [🧩 jeet-kiit-crud](#-jeet-kiit-crud)
+  - [📖 Table of Content](#-table-of-content)
+  - [✨ Features](#-features)
+  - [📦 Installation](#-installation)
+  - [🛠 Setup](#-setup)
+  - [🚀 Usage](#-usage)
+    - [🔹 Create a todo](#-create-a-todo)
+    - [🔹 Get a todo](#-get-a-todo)
+    - [🔹 Update a todo](#-update-a-todo)
+    - [🔹 Delete a todo](#-delete-a-todo)
+    - [🔹 Get all todos for the current user](#-get-all-todos-for-the-current-user)
+    - [🔹 Get credit usage](#-get-credit-usage)
+  - [🧪 Backend API (Next.js)](#-backend-api-nextjs)
+  - [💡 Credit Limits](#credit-limits)
+  - [🧱 Tech Stack](#tech-stack)
+  - [📌 Author](#author)
+  - [📜 License](#license)
+---
+
+## ✨ Features
+
+- ✅ Create, Read, Update, Delete operations
+- 🔐 API Key–protected requests
+- 🔋 Credit-limited usage per user
+- 🧾 Works with any frontend or CLI via this package
+- 🧰 Built with Axios + TypeScript
+
+---
+
+## 📦 Installation
+
+```bash
+npm install jeet-kiit-crud (Not published yet! Use local path instead)
 ```
 
-## What's inside?
 
-This Turborepo includes the following packages/apps:
+---
 
-### Apps and Packages
+## 🛠 Setup
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+Create a `.env` file in the root of your project using the package:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```env
+NEXT_PUBLIC_CRUD_API_URL=http://localhost:3000/api
+NEXT_PUBLIC_CRUD_API_KEY=your-api-key
 ```
 
-### Develop
+---
 
-To develop all apps and packages, run the following command:
+## 🚀 Usage
 
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```ts
+import * as Crublibrary from "jeet-kiit-crud";
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### 🔹 Create a todo
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
+```ts
+const res = await Crublibrary.create({ value: "Learn AI", txHash: "0xabc123" });
+// → { id: "clx...", status: "created successfully" }
 ```
-npx turbo link
+
+---
+
+### 🔹 Get a todo
+
+```ts
+const todo = await Crublibrary.get("clx123...");
+console.log(todo.value, todo.txHash);
 ```
 
-## Useful Links
+---
 
-Learn more about the power of Turborepo:
+### 🔹 Update a todo
 
-- [Tasks](https://turbo.build/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/docs/reference/command-line-reference)
+```ts
+await Crublibrary.update("clx123...", { value: "Updated value" });
+```
+
+---
+
+### 🔹 Delete a todo
+
+```ts
+await Crublibrary.remove("clx123...");
+```
+
+---
+
+### 🔹 Get all todos for the current user
+
+```ts
+const allTodos = await Crublibrary.getAll();
+console.log(allTodos);
+```
+
+---
+
+### 🔹 Get credit usage
+
+```ts
+const creditInfo = await Crublibrary.getCredits();
+console.log(`Used: ${creditInfo.requestCount}/${creditInfo.requestLimit}`);
+```
+
+---
+
+## 🧪 Backend API (Next.js)
+
+These routes power the NPM package:
+
+| Endpoint       | Method | Description      |
+| -------------- | ------ | ---------------- |
+| `/api/create`  | POST   | Create new todo  |
+| `/api/:id`     | GET    | Fetch one        |
+| `/api/:id`     | PUT    | Update todo      |
+| `/api/:id`     | DELETE | Delete todo      |
+| `/api/all`     | GET    | Get all todos    |
+| `/api/credits` | GET    | Get credit usage |
+
+> All requests must include header:
+> `x-api-key: YOUR_API_KEY`
+
+---
+
+## 💡 Credit Limits
+
+Each user is given 4 credits (requests).  
+Once limit is reached, further API calls will be blocked until recharge.
+
+---
+
+## 🧱 Tech Stack
+
+- Frontend: Next.js (App Router), Tailwind CSS
+- Backend: Next.js API routes, Prisma, PostgreSQL
+- Auth: Google OAuth via NextAuth.js
+- Package: Axios + TypeScript + Custom NPM package
+- Infra: Monorepo via Turborepo
+
+---
+
+## 📌 Author
+
+Made with ❤️ by [Jeet Das](https://github.com/JeetDas5) — KIIT University  
+FormPilot Internship Task, 2024
+
+
+---
+
+### ✅ Optional:
+- You can rename `jeet-kiit-crud` → `formpilot-crud` before publishing to NPM
+- Push this `README.md` in both:
+  - `packages/crublibrary/`
+  - And your main GitHub repo root (if you want project-wide instructions)
+
+Let me know if you'd like a logo banner, deploy instructions, or contributor section added!
+
