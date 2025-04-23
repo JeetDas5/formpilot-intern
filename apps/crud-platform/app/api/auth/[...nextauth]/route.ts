@@ -28,7 +28,7 @@ const handler = NextAuth({
 
       if (!existingUser) {
         const apiKey = uuidv4();
-        const apiUrl = `${process.env.NEXTAUTH_URL}/api`;
+        const apiUrl = `${process.env.NEXTAUTH_TODO_URL}`;
 
         await prisma.user.create({
           data: {

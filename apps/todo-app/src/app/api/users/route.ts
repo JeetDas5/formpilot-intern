@@ -1,4 +1,3 @@
-// pages/api/users.ts
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@repo/db";
@@ -41,7 +40,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         },
       });
 
-      res.status(201).json({ user, apiKey, apiUrl });
+      res.status(201).json({ user, apiKey, apiUrl});
     } catch (error) {
       res.status(500).json({ error: "Error creating user" });
     }

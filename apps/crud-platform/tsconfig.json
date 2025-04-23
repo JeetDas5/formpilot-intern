@@ -14,7 +14,7 @@
     "next-env.d.ts",
     "next.config.js",
     ".next/types/**/*.ts"
-  ],
+, "../todo-app/src/app/components/MissingKeyFallback.tsx", "../todo-app/src/app/components/InitKeyHandler.tsx"  ],
   "exclude": [
     "node_modules"
   ]

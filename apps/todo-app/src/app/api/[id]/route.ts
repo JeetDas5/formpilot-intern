@@ -1,6 +1,7 @@
 import { prisma } from "@repo/db";
 import { validateRequest } from "../../lib/middleware";
 import { NextResponse } from "next/server";
+import { corsHeaders } from "@/app/lib/cors";
 
 export async function GET(
   req: Request,
@@ -8,7 +9,7 @@ export async function GET(
 ) {
   const validation = await validateRequest(req);
   if (validation.status !== 200)
-    return NextResponse.json(validation.body, { status: validation.status });
+    return NextResponse.json(validation.body, { status: validation.status,headers:corsHeaders });
 
   const data = await prisma.data.findUnique({
     where: { id: params.id, userId: validation.user!.id },

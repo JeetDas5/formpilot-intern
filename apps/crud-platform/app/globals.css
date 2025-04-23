@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    @apply bg-gradient-to-br from-blue-50 via-white to-blue-200 text-zinc-900;
+    transition: background 0.3s ease-in-out;
+    min-height: 100vh;
+  }
