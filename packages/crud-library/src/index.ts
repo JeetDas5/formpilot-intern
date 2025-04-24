@@ -5,14 +5,15 @@ dotenv.config();
 export type CrudClientConfig = {
   apiKey: string;
   apiUrl: string;
+  API_TODO_URL:string
 };
 
-export function CrudLibrary({ apiKey,apiUrl }: CrudClientConfig) {
+export function CrudLibrary({ apiKey,apiUrl,API_TODO_URL }: CrudClientConfig) {
   if (!apiKey || !apiUrl) {
     throw new Error("Missing apiKey or apiUrl when creating the CRUD client.");
   }
 
-  const API_TODO_URL = "http://localhost:3001/api"
+  API_TODO_URL = API_TODO_URL+"/api";
 
   const headers = {
     "x-api-key": apiKey,

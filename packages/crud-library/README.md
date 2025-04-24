@@ -30,6 +30,7 @@ import { CrudLibrary } from "jeet-kiit-crud";
 const crud = CrudLibrary({
   apiKey: "your-api-key-here",
   apiUrl: "https://your-crud-domain.com/api",
+  API_TODO_URL: "your-todo-domain"
 });
 ```
 

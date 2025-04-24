@@ -4,8 +4,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { CrudLibrary } from "jeet-kiit-crud";
 import Loader from "./Loader";
+import {CrudLibrary} from "jeet-kiit-crud"
 
 export default function TodoPage() {
   const [todos, setTodos] = useState<any[]>([]);
