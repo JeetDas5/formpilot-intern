@@ -16,8 +16,9 @@ export default function Page() {
   const { status } = useSession();
   const { data: session } = useSession();
 
-  const CrudPlatformUrl = "http://localhost:3000";
-  const TodoUrl = "http://localhost:3001";
+  const CrudPlatformUrl = process.env.NEXTAUTH_URL;
+  const TodoUrl = process.env.NEXTAUTH_TODO_URL;
+
 
   if (status === "loading") return <Loader />;
 
