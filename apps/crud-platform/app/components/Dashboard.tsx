@@ -7,6 +7,7 @@ import ErrorPage from "./ErrorPage";
 import Loader from "./Loader";
 import axios from "axios";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Page() {
 
@@ -137,14 +138,13 @@ export default function Page() {
               🚪 Logout
             </button>
 
-            <a
+            <Link
               href={TodoUrl}
-              target="_blank"
               rel="noopener noreferrer"
-              className="block mt-6 text-center text-blue-600 hover:underline font-medium"
+              className="block mt-6 text-center text-blue-600 hover:underline font-medium cursor-pointer"
             >
-              👉 Go to Todo App
-            </a>
+              👉 Go to Todo App{TodoUrl}
+            </Link>
           </>
         ) : (
           <>
