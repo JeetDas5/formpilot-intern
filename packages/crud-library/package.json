@@ -1,6 +1,8 @@
 {
   "name": "jeet-kiit-crud",
+  "author": "Jeet Das",
   "version": "1.0.0",
+  "description": "A simple CRUD client for FormPilot internship task using API key + Postgres",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
