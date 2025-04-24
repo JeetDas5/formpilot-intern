@@ -19,7 +19,7 @@ export default function TodoPage() {
 
   const apiKey = sessionStorage.getItem("api-key")!;
   const apiUrl = sessionStorage.getItem("api-url")!;
-  const API_TODO_URL = "http://localhost:3001";
+  const API_TODO_URL = process.env.NEXT_PUBLIC_CRUD_API_URL;
 
 
   const crud = CrudLibrary({apiKey, apiUrl, API_TODO_URL} as CrudClientConfig);
