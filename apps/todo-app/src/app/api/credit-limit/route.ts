@@ -1,4 +1,4 @@
-// Get the request limit of the user
+// Get the request count of the user
 import { prisma } from "@repo/db";
 import { validateRequest } from "../../lib/middleware";
 import { corsHeaders } from "@/app/lib/cors";
@@ -44,5 +44,5 @@ export async function GET(req: Request) {
     );
   }
 
-  return NextResponse.json({ requestCount: user.requestCount });
+  return NextResponse.json({ requestCount: user.requestLimit });
 }

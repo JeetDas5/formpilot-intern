@@ -1,17 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import {CrudLibrary} from "jeet-kiit-crud";
+import { CrudLibrary } from "jeet-kiit-crud";
 import toast, { Toaster } from "react-hot-toast";
+import Loader from "./Loader";
 
 export default function TodoPage() {
   const [todos, setTodos] = useState<any[]>([]);
   const [value, setValue] = useState("");
   const [editId, setEditId] = useState<string | null>(null);
   const [credits, setCredits] = useState<number | null>(null);
+  const [creditLimit, setCreditLimit] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const apiKey = sessionStorage.getItem("api-key")!;
@@ -19,12 +21,10 @@ export default function TodoPage() {
 
   const crud = CrudLibrary({ apiKey, apiUrl });
 
-  // Focus input on load and when switching to edit mode
   useEffect(() => {
     inputRef.current?.focus();
   }, [editId]);
 
-  //Get Credits
   const refreshCredits = async () => {
     try {
       const res = await crud.getCredits();
@@ -34,27 +34,39 @@ export default function TodoPage() {
     }
   };
 
+  
+  const getCreditLimit = async ()=>{
+    setLoading(true);
+    try {
+      const res = await crud.getCreditLimit();
+      setCreditLimit(res.requestCount);
+    } catch (err: any) {
+      toast.error(err?.response?.data?.error || "Error fetching credit limit");
+    }
+    setLoading(false)
+  }
+  
   useEffect(() => {
     refreshCredits();
+    getCreditLimit();
   }, []);
 
-  // Fetch all todos on load
   useEffect(() => {
+    setLoading(true);
     const fetchTodos = async () => {
       try {
         const res = await crud.getAll();
         setTodos(res);
       } catch (err: any) {
-        // if(err?.response?.status == 429){
-        //   toast.error("Request limit exceeded. Please recharge credits.");
-        // }
         toast.error(err?.response?.data?.error || "Error fetching todos");
       }
     };
+    setLoading(false);
     fetchTodos();
   }, []);
 
   const handleCreate = async () => {
+    setLoading(true);
     if (!value.trim()) return toast.error("Please enter a todo.");
     try {
       const txHash = Math.random().toString(36).substring(2);
@@ -67,12 +79,14 @@ export default function TodoPage() {
       setValue("");
       toast.success("Todo created!");
     } catch (err: any) {
-      toast.error(err?.response?.data?.error || "Error creating todo");
+      toast.error(err?.response?.data?.error || "Error creating todos");
     }
+    setLoading(false);
     await refreshCredits();
   };
 
   const handleUpdate = async () => {
+    setLoading(true);
     if (!value.trim()) return toast.error("Please enter a todo.");
     try {
       await crud.update(editId!, { value });
@@ -81,21 +95,24 @@ export default function TodoPage() {
       setValue("");
       setEditId(null);
       toast.success("Todo updated!");
-    } catch {
-      toast.error("Error updating todo");
+    } catch (err: any) {
+      toast.error(err?.response?.data?.error || "Error updating todos");
     }
+    setLoading(false);
     await refreshCredits();
   };
 
   const handleDelete = async (id: string) => {
+    setLoading(true);
     try {
       await crud.remove(id);
       const updated = todos.filter((t) => t.id !== id);
       setTodos(updated);
       toast.success("Todo deleted!");
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (err: any) {
+      toast.error(err?.response?.data?.error || "Error deleting todos");
     }
+    setLoading(false);
     await refreshCredits();
   };
 
@@ -106,6 +123,7 @@ export default function TodoPage() {
 
   return (
     <main className="min-h-screen px-6 py-10 max-w-md mx-auto bg-gradient-to-br from-blue-50 via-white to-green-50 text-zinc-900 transition shadow-xl rounded-3xl border border-blue-100">
+      {loading && <Loader />}
       <Toaster position="top-right" />
 
       <h1 className="text-4xl font-extrabold mb-10 text-center text-blue-700 drop-shadow-sm">
@@ -130,7 +148,7 @@ export default function TodoPage() {
 
       <div className="mb-4 text-center">
         <span className="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm shadow-sm">
-          🔋 Requests Used: {credits}/4
+          🔋 Requests Used: {credits}/{creditLimit}
         </span>
       </div>
 

@@ -12,6 +12,13 @@ export async function OPTIONS() {
 
 export async function POST(req: Request) {
   const validation = await validateRequest(req);
+  if (validation.status === 429) {
+    return NextResponse.json(
+      { error: "Request limit reached" },
+      { status: 429, headers: corsHeaders }
+    );
+  }
+  
   if (validation.status !== 200) {
     return NextResponse.json(validation.body, {
       status: validation.status,

@@ -16,7 +16,6 @@ export default function InitKeyHandler() {
       sessionStorage.setItem("api-url", apiUrl);
       console.log("✅ API Key & URL stored in session");
 
-      // Clean URL
       router.replace("/");
     }
   }, [params]);

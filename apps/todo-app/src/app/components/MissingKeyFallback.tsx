@@ -36,7 +36,7 @@ export default function MissingKeyFallback() {
     />
 
     <button
-      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg transition shadow-sm"
+      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg transition shadow-sm cursor-pointer"
       onClick={handleSave}
     >
       Save & Continue

@@ -8,8 +8,17 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   const validation = await validateRequest(req);
+  if (validation.status === 429) {
+    return NextResponse.json(
+      { error: "Request limit reached" },
+      { status: 429, headers: corsHeaders }
+    );
+  }
   if (validation.status !== 200)
-    return NextResponse.json(validation.body, { status: validation.status,headers:corsHeaders });
+    return NextResponse.json(validation.body, {
+      status: validation.status,
+      headers: corsHeaders,
+    });
 
   const data = await prisma.data.findUnique({
     where: { id: params.id, userId: validation.user!.id },
@@ -26,12 +35,19 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   const validation = await validateRequest(req);
+  if (validation.status === 429) {
+    return NextResponse.json(
+      { error: "Request limit reached" },
+      { status: 429, headers: corsHeaders }
+    );
+  }
   if (validation.status !== 200)
     return NextResponse.json(validation.body, { status: validation.status });
 
   const { value } = await req.json();
   if (!value)
     return NextResponse.json({ error: "Value required" }, { status: 400 });
+
 
   await prisma.data.update({
     where: { id: params.id, userId: validation.user!.id },
@@ -46,6 +62,12 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   const validation = await validateRequest(req);
+  if (validation.status === 429) {
+    return NextResponse.json(
+      { error: "Request limit reached" },
+      { status: 429, headers: corsHeaders }
+    );
+  }
   if (validation.status !== 200)
     return NextResponse.json(validation.body, { status: validation.status });
 

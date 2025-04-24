@@ -1,4 +1,19 @@
 import NextAuth from "next-auth";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      name: string;
+      email: string;
+      image?: string;
+      apiKey?: string;
+      apiUrl?: string;
+      creditsLeft?: number;
+      creditsUsed?: number;
+      creditsLimit?: number;
+    };
+  }
+}
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@repo/db";
@@ -66,7 +81,7 @@ const handler = NextAuth({
             },
           });
 
-          console.log(`🔗 Linked Google account for ${user.email}`);
+          console.log(`Linked Google account for ${user.email}`);
         }
       }
 
@@ -89,6 +104,7 @@ const handler = NextAuth({
         session.user.apiUrl = dbUser.apiUrl;
         session.user.creditsLeft = dbUser.requestLimit - dbUser.requestCount;
         session.user.creditsUsed = dbUser.requestCount;
+        session.user.creditsLimit = dbUser.requestLimit;
       }
 
       return session;

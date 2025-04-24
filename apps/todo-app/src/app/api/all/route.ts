@@ -6,9 +6,24 @@ import { corsHeaders } from "@/app/lib/cors";
 export async function GET(req: Request) {
   const validation = await validateRequest(req, true);
 
-  if (validation.status !== 200 && validation.status !== 430) {
+  if (validation.status === 429) {
+    return NextResponse.json(
+      { error: "Request limit reached" },
+      { status: 429, headers: corsHeaders }
+    );
+  }
+
+  if (validation.status !== 200) {
     return NextResponse.json(validation.body, { status: validation.status,headers: corsHeaders });
   }
+
+  if (!validation.user) {
+    return NextResponse.json(
+      { error: "Unauthorized or invalid user." },
+      { status: 401, headers: corsHeaders }
+    );
+  }
+  
 
   const data = await prisma.data.findMany({
     where: { userId: validation.user!.id },

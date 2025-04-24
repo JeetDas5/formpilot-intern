@@ -39,6 +39,11 @@ export function CrudLibrary({ apiKey,apiUrl }: CrudClientConfig) {
       return res.data;
     },
 
+    async getCreditLimit(){
+      const res = await axios.get(`${API_TODO_URL}/credit-limit`, { headers });
+      return res.data;
+    },
+    
     async update(id: string, data: { value: string }) {
       const res = await axios.put(`${API_TODO_URL}/${id}`, data, { headers });
       return res.data;
