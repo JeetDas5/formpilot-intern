@@ -140,10 +140,9 @@ export default function Page() {
 
             <Link
               href={TodoUrl}
-              rel="noopener noreferrer"
               className="block mt-6 text-center text-blue-600 hover:underline font-medium cursor-pointer"
             >
-              👉 Go to Todo App{TodoUrl}
+              👉 Go to Todo App
             </Link>
           </>
         ) : (
