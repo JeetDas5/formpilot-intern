@@ -1,4 +1,4 @@
-import { prisma } from "@repo/db";
+import { prisma } from "../../../../../packages/database/src/client";
 import { validateRequest } from "../../../lib/middleware";
 import { corsHeaders } from "../../../lib/cors";
 

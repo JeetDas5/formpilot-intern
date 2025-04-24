@@ -16,7 +16,7 @@ declare module "next-auth" {
 }
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prisma } from "@repo/db";
+import { prisma } from "../../../../../../packages/database/src/client";
 import { v4 as uuidv4 } from "uuid";
 
 const handler = NextAuth({
