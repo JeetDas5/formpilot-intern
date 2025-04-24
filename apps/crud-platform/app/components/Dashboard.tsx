@@ -21,11 +21,11 @@ export default function Page() {
 
   if (status === "loading") return <Loader />;
 
-  // if (session == null) return <ErrorPage errorMessage="Session not found" />;
-
+  
   const handleRecharge = async () => {
     setIsLoading(true)
     try {
+      if (session == null) return <ErrorPage errorMessage="Session not found" />;
       await axios.post(
         `${CrudPlatformUrl}/api/recharge`,
         {},
