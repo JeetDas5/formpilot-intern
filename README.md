@@ -50,7 +50,7 @@ Designed to work with a secure backend powered by **PostgreSQL, Prisma, and Next
 ## 📦 Installation
 
 ```bash
-npm install jeet-kiit-crud (Not published yet! Use local path instead)
+npm install jeet-kiit-crud
 ```
 
 
