@@ -1,20 +1,42 @@
 {
-  "extends": "@repo/typescript-config/nextjs.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "typeRoots": ["types", "./node_modules/@types"]
+    "typeRoots": [
+      "types",
+      "./node_modules/@types"
+    ],
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
     "next.config.js",
-    ".next/types/**/*.ts"
-, "../todo-app/src/app/components/MissingKeyFallback.tsx", "../todo-app/src/app/components/InitKeyHandler.tsx"  ],
+    ".next/types/**/*.ts",
+    "../todo-app/src/app/components/MissingKeyFallback.tsx",
+    "../todo-app/src/app/components/InitKeyHandler.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]

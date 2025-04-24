@@ -11,6 +11,9 @@
     "check-types": "tsc --noEmit",
     "postinstall": "prisma generate"
   },
+  "prisma": {
+    "schema": "packages/database/prisma/schema.prisma"
+  },
   "dependencies": {
     "@auth/prisma-adapter": "^2.8.0",
     "@heroicons/react": "^2.2.0",

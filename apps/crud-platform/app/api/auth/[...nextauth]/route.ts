@@ -30,7 +30,7 @@ const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
 
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user, account }) {
       if (!user?.email) {
         throw new Error("Email is required for sign-in.");
       }
