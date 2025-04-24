@@ -1,9 +1,20 @@
 {
   "name": "jeet-kiit-crud",
   "author": "Jeet Das",
-  "version": "1.0.0",
-  "description": "A simple CRUD client for FormPilot internship task using API key + Postgres",
+  "version": "1.0.5",
+  "description": "A simple CRUD client npm package using API key + Postgres",
   "license": "MIT",
+  "keywords": [
+    "crud",
+    "api",
+    "api-key",
+    "axios",
+    "typescript",
+    "nextjs",
+    "postgres",
+    "recharge",
+    "npm-package"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",

@@ -6,7 +6,7 @@
 [![npm](https://img.shields.io/npm/v/jeet-kiit-crud?color=%2300b894&label=npm%20package)](https://www.npmjs.com/package/jeet-kiit-crud)
 [![License](https://img.shields.io/npm/l/jeet-kiit-crud?color=blue)](LICENSE)
 [![Build](https://img.shields.io/badge/build-passed-brightgreen)](#)
-[![Made by Jeet](https://img.shields.io/badge/made%20by-jeet%20rout-%23e84393)](https://github.com/jeet-rout)
+[![Made by Jeet](https://img.shields.io/badge/made%20by-jeet%20das-%23e84393)](https://github.com/JeetDas5)
 
 > 🔐 A secure, API-key-based CRUD client for use with FormPilot or custom backend APIs.  
 > Built with TypeScript, Axios, and fully Postgres-ready.
