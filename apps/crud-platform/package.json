@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "postinstall": "npx prisma generate --schema=packages/database/prisma/schema.prisma"
+    "postinstall": "npx prisma generate --schema=./packages/database/prisma/schema.prisma"
   },
   "prisma": {
     "schema": "./packages/database/prisma/schema.prisma"
