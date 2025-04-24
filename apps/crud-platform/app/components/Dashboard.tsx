@@ -21,7 +21,7 @@ export default function Page() {
 
   if (status === "loading") return <Loader />;
 
-  if (session == null) return <ErrorPage errorMessage="Session not found" />;
+  // if (session == null) return <ErrorPage errorMessage="Session not found" />;
 
   const handleRecharge = async () => {
     setIsLoading(true)
