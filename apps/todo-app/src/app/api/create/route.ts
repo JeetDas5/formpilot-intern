@@ -1,6 +1,6 @@
 import { prisma } from "@repo/db";
 import { validateRequest } from "../../lib/middleware";
-import { corsHeaders } from "@/app/lib/cors";
+import { corsHeaders } from "../../lib/cors";
 import { NextResponse } from "next/server";
 
 export async function OPTIONS() {

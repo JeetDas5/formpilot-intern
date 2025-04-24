@@ -5,7 +5,8 @@
 import { useState, useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "./Loader";
-import {CrudLibrary} from "jeet-kiit-crud"
+import { CrudLibrary, CrudClientConfig } from "jeet-kiit-crud";
+
 
 export default function TodoPage() {
   const [todos, setTodos] = useState<any[]>([]);
@@ -18,8 +19,10 @@ export default function TodoPage() {
 
   const apiKey = sessionStorage.getItem("api-key")!;
   const apiUrl = sessionStorage.getItem("api-url")!;
+  const API_TODO_URL = "http://localhost:3001";
 
-  const crud = CrudLibrary({ apiKey, apiUrl });
+
+  const crud = CrudLibrary({apiKey, apiUrl, API_TODO_URL} as CrudClientConfig);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -34,8 +37,7 @@ export default function TodoPage() {
     }
   };
 
-  
-  const getCreditLimit = async ()=>{
+  const getCreditLimit = async () => {
     setLoading(true);
     try {
       const res = await crud.getCreditLimit();
@@ -43,9 +45,9 @@ export default function TodoPage() {
     } catch (err: any) {
       toast.error(err?.response?.data?.error || "Error fetching credit limit");
     }
-    setLoading(false)
-  }
-  
+    setLoading(false);
+  };
+
   useEffect(() => {
     refreshCredits();
     getCreditLimit();

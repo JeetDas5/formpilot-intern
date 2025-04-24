@@ -5,7 +5,7 @@ dotenv.config();
 export type CrudClientConfig = {
   apiKey: string;
   apiUrl: string;
-  API_TODO_URL:string
+  API_TODO_URL:string;
 };
 
 export function CrudLibrary({ apiKey,apiUrl,API_TODO_URL }: CrudClientConfig) {

@@ -1,7 +1,7 @@
 import { prisma } from "@repo/db";
 import { validateRequest } from "../../lib/middleware";
 import { NextResponse } from "next/server";
-import { corsHeaders } from "@/app/lib/cors";
+import { corsHeaders } from "../../lib/cors";
 
 export async function GET(req: Request) {
   const validation = await validateRequest(req, true);
