@@ -4,7 +4,7 @@ This is a monorepo for the FormPilot , which includes a custom NPM package for C
 
 ## 📦 Package
 
-The package is located in the `packages/crublibrary` directory. It is designed to work with a secure backend powered by PostgreSQL, Prisma, and Next.js.
+The package is located in the `packages/crub-library` directory. It is designed to work with a secure backend powered by PostgreSQL, Prisma, and Next.js.
 The package provides a simple and efficient way to perform CRUD operations with credit-limited APIs.
 The package is built with TypeScript and Axios, making it easy to use and integrate into any frontend or CLI application.
 
@@ -163,7 +163,7 @@ Once limit is reached, further API calls will be blocked until recharge.
 ## 📌 Author
 
 Made with ❤️ by [Jeet Das](https://github.com/JeetDas5) — KIIT University  
-FormPilot Internship Task, 2024
+FormPilot Internship Task, 2025
 
 
 ---
