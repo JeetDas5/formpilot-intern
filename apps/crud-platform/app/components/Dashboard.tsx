@@ -10,7 +10,7 @@ import { useState } from "react";
 
 export default function Page() {
 
-  const [isLoading,setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const { status } = useSession();
@@ -22,7 +22,7 @@ export default function Page() {
 
   if (status === "loading") return <Loader />;
 
-  
+
   const handleRecharge = async () => {
     setIsLoading(true)
     try {
@@ -44,7 +44,7 @@ export default function Page() {
     <>
       <Toaster position="top-right" />
       {
-        isLoading && <Loader/>
+        isLoading && <Loader />
       }
       <main className="p-8 max-w-2xl mx-auto bg-white/60 backdrop-blur-md shadow-xl rounded-3xl border border-blue-100 mt-10">
         <h1 className="text-3xl font-extrabold text-blue-700 mb-6 text-center drop-shadow-sm">
@@ -139,6 +139,8 @@ export default function Page() {
 
             <a
               href={TodoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="block mt-6 text-center text-blue-600 hover:underline font-medium cursor-pointer"
             >
               👉 Go to Todo App
