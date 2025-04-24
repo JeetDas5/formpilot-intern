@@ -138,12 +138,12 @@ export default function Page() {
               🚪 Logout
             </button>
 
-            <Link
+            <a
               href={TodoUrl}
               className="block mt-6 text-center text-blue-600 hover:underline font-medium cursor-pointer"
             >
               👉 Go to Todo App
-            </Link>
+            </a>
           </>
         ) : (
           <>
