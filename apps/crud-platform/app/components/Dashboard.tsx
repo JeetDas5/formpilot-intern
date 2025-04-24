@@ -7,7 +7,6 @@ import ErrorPage from "./ErrorPage";
 import Loader from "./Loader";
 import axios from "axios";
 import { useState } from "react";
-import Link from "next/link";
 
 export default function Page() {
 
@@ -17,8 +16,8 @@ export default function Page() {
   const { status } = useSession();
   const { data: session } = useSession();
 
-  const CrudPlatformUrl = process.env.NEXTAUTH_URL;
-  const TodoUrl = process.env.NEXTAUTH_TODO_URL;
+  const CrudPlatformUrl = process.env.NEXT_PUBLIC_NEXTAUTH_URL;
+  const TodoUrl = process.env.NEXT_PUBLIC_NEXTAUTH_TODO_URL;
 
 
   if (status === "loading") return <Loader />;
