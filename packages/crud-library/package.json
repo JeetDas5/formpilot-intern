@@ -3,6 +3,7 @@
   "author": "Jeet Das",
   "version": "1.0.0",
   "description": "A simple CRUD client for FormPilot internship task using API key + Postgres",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
