@@ -19,7 +19,9 @@ export default function TodoPage() {
 
   const apiKey = sessionStorage.getItem("api-key")!;
   const apiUrl = sessionStorage.getItem("api-url")!;
-  const API_TODO_URL = process.env.NEXT_PUBLIC_CRUD_API_URL;
+  const API_TODO_URL = process.env.NEXT_PUBLIC_TODO_API_URL;
+
+  console.log("todo url",API_TODO_URL)
 
 
   const crud = CrudLibrary({apiKey, apiUrl, API_TODO_URL} as CrudClientConfig);

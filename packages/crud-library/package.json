@@ -1,7 +1,7 @@
 {
   "name": "jeet-kiit-crud",
   "author": "Jeet Das",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A simple CRUD client npm package using API key + Postgres",
   "license": "MIT",
   "keywords": [

@@ -9,11 +9,9 @@ export type CrudClientConfig = {
 };
 
 export function CrudLibrary({ apiKey,apiUrl,API_TODO_URL }: CrudClientConfig) {
-  if (!apiKey || !apiUrl) {
-    throw new Error("Missing apiKey or apiUrl when creating the CRUD client.");
+  if (!apiKey || !apiUrl || !API_TODO_URL) {
+    throw new Error("Missing apiKey or apiUrl or API_TODO_URL when creating the CRUD client.");
   }
-
-  API_TODO_URL = API_TODO_URL+"/api";
 
   const headers = {
     "x-api-key": apiKey,
