@@ -5,7 +5,7 @@
 import { useState, useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "./Loader";
-import { CrudLibrary, CrudClientConfig } from "jeet-kiit-crud";
+import {CrudLibrary,CrudClientConfig} from "jeet-kiit-crud"
 
 
 export default function TodoPage() {
