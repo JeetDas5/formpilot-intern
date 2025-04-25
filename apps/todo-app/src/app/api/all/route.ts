@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { corsHeaders } from "../../lib/cors";
 
 export async function OPTIONS() {
-  return NextResponse.json({}, {
+  return NextResponse.json(null, {
     status: 204,
     headers: corsHeaders,
   });
