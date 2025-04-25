@@ -206,10 +206,5 @@ FormPilot Internship Task, 2025
 
 ---
 
-### ✅ Optional:
-- You can rename `jeet-kiit-crud` → `formpilot-crud` before publishing to NPM
-- Push this `README.md` in both:
-  - `packages/crublibrary/`
-  - And your main GitHub repo root (if you want project-wide instructions)
 
-### Thanks for reading!
+### 💝 Thanks for reading!
