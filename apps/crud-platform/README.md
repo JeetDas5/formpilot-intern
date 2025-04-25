@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
+# FormPilot CRUD Platform
 
-## Getting Started
+A full-stack web application where users can:
 
-First, run the development server:
+- 🔐 Authenticate using Google
+- 🔑 Generate secure API keys
+- ⚡ Track API usage (credits)
+- 📨 Recharge credits via email flow
+- 🚀 Integrate with an external TODO app via a published NPM package
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This is the core platform behind the FormPilot internship task.
+
+---
+
+## 🔗 Live Demo
+
+🌐 [https://formpilot-intern-crud-platform.vercel.app](https://formpilot-intern-crud-platform.vercel.app)
+
+---
+
+## 🧠 Features
+
+- ✅ Google OAuth authentication (`next-auth`)
+- 🔑 API key generation per user
+- 📦 NPM package ready for external integrations
+- 📊 Request limit logic (4 credits per user by default)
+- 💌 Recharge credits by sending an email request
+- 🌐 Shared Postgres DB via Prisma + Neon + Turborepo
+
+---
+
+## 📁 Project Structure
+
+```
+apps/
+  └── crud-platform/     ← This web app
+packages/
+  ├── database/          ← Shared Prisma client + schema
+  ├── typescript-config/ ← Shared tsconfig
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧪 Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
+- **Next.js 14 (App Router)**
+- **PostgreSQL + Prisma (via Neon DB)**
+- **Tailwind CSS**
+- **NextAuth.js**
+- **Turborepo (monorepo architecture)**
+- **Vercel (for deployment)**
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔐 Auth & API Key Flow
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. User logs in with Google
+2. An API key and usage URL are generated and shown
+3. Each request consumes 1 credit (max 4 by default)
+4. When exhausted, user must send an email to recharge(click recharge button)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📦 Integrations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Used by the following:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 🔗 **Todo App:** [https://formpilot-intern-todo-app.vercel.app](https://formpilot-intern-todo-app.vercel.app)
+- 📦 **NPM Client Library:** [`jeet-kiit-crud`](https://www.npmjs.com/package/jeet-kiit-crud)
+
+---
+
+## 🚀 Local Development
+
+```bash
+npm install
+npm run dev
+```
+
+Add the required environment variables in `.env`:
+
+```env
+GOOGLE_CLIENT_ID=<YOUR_GOOGLE_CLIENT_ID>
+GOOGLE_CLIENT_SECRET=<YOUR_GOOGLE_CLIENT_SECRET>
+NEXTAUTH_SECRET=<YOUR_NEXTAUTH_SECRET>
+NEXT_PUBLIC_NEXTAUTH_URL=<YOUR_NEXTAUTH_URL>
+NEXT_PUBLIC_NEXTAUTH_TODO_URL=<YOUR_NEXTAUTH_TODO_URL>
+DATABASE_URL=<YOUR_DATABASE_URL>
+```
+
+---
+
+## 📄 License
+
+MIT
+
+---
+
+## 👨‍💻 Author
+
+Made with ❤️ by **Jeet Das**  
+FormPilot Internship Task – 2025
+
+---

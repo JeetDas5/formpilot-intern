@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Formpilot Todo App
 
-## Getting Started
+This is a simple Todo App built with Next.js 15 (App Router) and Prisma, designed to be used as a demo for the CRUD platform. It features authentication via Google and a simple API key flow for usage tracking.
 
-First, run the development server:
+A todo app is a web application that allows users to create, manage their tasks, and track their progress. It typically includes features such as adding, editing, deleting. The app is built using Next.js 15 (App Router) and Prisma, which provides a powerful and flexible way to interact with the database.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Live Demo
+
+🌐 [https://formpilot-intern-todo-app.vercel.app](https://formpilot-intern-todo-app.vercel.app)
+
+## Features
+
+- ✅ Google OAuth authentication (`next-auth`)
+- 🔑 API key generation per user
+- 📦 NPM package ready for external integrations
+- 📊 Request limit logic (4 credits per user by default)
+- 💌 Recharge credits by sending an email request(currently clicking button will do the job)
+- 🌐 Shared Postgres DB via Prisma + Neon + Turborepo
+
+## Project Structure
+
 ```
+apps/
+  └── todo-app/     ← This web app
+packages/
+    ├── database/          ← Shared Prisma client + schema
+    ├── typescript-config/ ← Shared tsconfig
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+    
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js 15 (App Router)**
+- **PostgreSQL + Prisma (via Neon DB)**
+- **Tailwind CSS**
+- **NextAuth.js**
+- **Turborepo (monorepo architecture)**
+- **Vercel (for deployment)**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Auth & API Key Flow
+1. User logs in with Google
+2. An API key and usage URL are generated and shown
+3. Each request consumes 1 credit (max 4 by default)
+4. When exhausted, user must send an email to recharge(click recharge button)
+5. User can also click the button to recharge credits
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## 📄 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+MIT
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 👨‍💻 Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Made with ❤️ by **Jeet Das**  
+FormPilot Internship Task – 2025
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
