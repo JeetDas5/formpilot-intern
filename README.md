@@ -1,6 +1,14 @@
 # FormPilot Monorepo
 
 This is a monorepo for the FormPilot , which includes a custom NPM package for CRUD operations with credit-limited APIs.
+The monorepo is structured using Turborepo, which allows for efficient management of multiple packages and shared code.
+
+## Deployed URL
+
+- [Crud Platform](https://formpilot-intern-crud-platform.vercel.app/)
+- [Todo App](https://formpilot-intern-todo-app.vercel.app/)
+- [NPM Package](https://www.npmjs.com/package/jeet-kiit-crud)
+
 
 ## 📦 Package
 
@@ -61,8 +69,8 @@ npm install jeet-kiit-crud
 Create a `.env` file in the root of your project using the package:
 
 ```env
-NEXT_PUBLIC_CRUD_API_URL=http://localhost:3000/api
 NEXT_PUBLIC_CRUD_API_KEY=your-api-key
+NEXT_PUBLIC_CRUD_API_URL=your-api-url
 ```
 
 ---
@@ -70,8 +78,17 @@ NEXT_PUBLIC_CRUD_API_KEY=your-api-key
 ## 🚀 Usage
 
 ```ts
-import * as Crublibrary from "jeet-kiit-crud";
+import {Crublibrary,CrudClientConfig} from "jeet-kiit-crud";
 ```
+
+### 🔹 Initialize the package
+
+```ts
+  const apiKey = Your_API_Key;
+  const apiUrl = Your_API_URL;
+  const API_TODO_URL = Your_API_TODO_URL;
+  const crud = CrudLibrary({apiKey, apiUrl, API_TODO_URL} as CrudClientConfig);
+  ```
 
 ### 🔹 Create a todo
 
@@ -125,18 +142,27 @@ console.log(`Used: ${creditInfo.requestCount}/${creditInfo.requestLimit}`);
 
 ---
 
+### 🔹 Get credit limit
+
+```ts
+const creditLimit = await Crublibrary.getCreditLimit();
+console.log(`Credit Limit: ${creditLimit}`);
+```
+---
+
 ## 🧪 Backend API (Next.js)
 
 These routes power the NPM package:
 
-| Endpoint       | Method | Description      |
-| -------------- | ------ | ---------------- |
-| `/api/create`  | POST   | Create new todo  |
-| `/api/:id`     | GET    | Fetch one        |
-| `/api/:id`     | PUT    | Update todo      |
-| `/api/:id`     | DELETE | Delete todo      |
-| `/api/all`     | GET    | Get all todos    |
-| `/api/credits` | GET    | Get credit usage |
+| Endpoint            | Method | Description      |
+| --------------      | ------ | ---------------- |
+| `/api/create`       | POST   | Create new todo  |
+| `/api/:id`          | GET    | Fetch one        |
+| `/api/:id`          | PUT    | Update todo      |
+| `/api/:id`          | DELETE | Delete todo      |
+| `/api/all`          | GET    | Get all todos    |
+| `/api/credits`      | GET    | Get credit usage |
+| `/api/credit-limit` | GET    | Get credit limit |
 
 > All requests must include header:
 > `x-api-key: YOUR_API_KEY`
@@ -149,6 +175,18 @@ Each user is given 4 credits (requests).
 Once limit is reached, further API calls will be blocked until recharge.
 
 ---
+
+## Recharge
+
+To recharge, you have to call the `/api/recharge` endpoint(POST) without any body:
+
+> Note: In Crud Platform there is a Recharge button that do the the recharge for a user.
+
+Recharge is limited to 4 credits only once per user.
+
+
+## 📜 License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## 🧱 Tech Stack
 
@@ -174,5 +212,4 @@ FormPilot Internship Task, 2025
   - `packages/crublibrary/`
   - And your main GitHub repo root (if you want project-wide instructions)
 
-Let me know if you'd like a logo banner, deploy instructions, or contributor section added!
-
+### Thanks for reading!
