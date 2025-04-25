@@ -139,7 +139,7 @@ export default function Page() {
               className="mt-6 inline-block bg-red-500 hover:bg-red-600 text-white font-medium px-5 py-2.5 rounded-xl transition shadow-sm"
               onClick={() => signOut()}
             >
-              🚪 Logout
+              Logout
             </button>
 
             <a
@@ -163,6 +163,7 @@ export default function Page() {
               <p className="text-zinc-600">
                 Please sign in to view your details.
               </p>
+              <p className="text-sm text-red-500">New users might have to sign in twice.</p>
             </div>
           </>
         )}
