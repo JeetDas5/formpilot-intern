@@ -2,7 +2,7 @@ import React from 'react'
 
 const Hero = () => {
     return (
-        <section className="relative w-full h-screen bg-gradient-to-br from-slate-100 via-white to-blue-200  text-white flex items-center justify-center backdrop-blur-md">
+        <section id="home" className="relative w-full h-screen bg-gradient-to-br from-slate-100 via-white to-blue-200  text-white flex items-center justify-center backdrop-blur-md">
             <div className="absolute inset-0 opacity-40"></div>
 
             <div className="relative z-10 text-center px-6 md:px-12">

@@ -1,14 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [showNavbar, setShowNavbar] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > lastScrollY) {
+                setShowNavbar(false);
+            } else {
+                setShowNavbar(true);
+            }
+            setLastScrollY(window.scrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
+
     return (
-        <nav className="bg-gradient-to-r from-blue-300 to-blue-500 text-white p-4 shadow-lg fixed w-full top-0 left-0 z-10">
+        <nav
+            className={`bg-gradient-to-r from-blue-300 to-blue-500 text-white p-4 shadow-lg fixed w-full top-0 left-0 z-10 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : '-translate-y-full'
+                }`}
+        >
             <div className="max-w-6xl mx-auto flex justify-between items-center">
                 <h1 className="text-2xl font-extrabold cursor-pointer hover:text-blue-200 transition">
                     FormPilot
@@ -16,14 +36,12 @@ const Navbar = () => {
 
                 <div className="hidden md:flex space-x-8">
                     <a href="#home" className="hover:text-blue-200 text-lg font-medium transition">Home</a>
-                    <a href="#features" className="hover:text-blue-200 text-lg font-medium transition">Features</a>
-                    <a href="#about" className="hover:text-blue-200 text-lg font-medium transition">About</a>
                     <a href="#contact" className="hover:text-blue-200 text-lg font-medium transition">Contact</a>
                 </div>
 
                 <div className="md:hidden flex items-center">
                     <button
-                        className="text-white focus:outline-none cursor-pointer"
+                        className="text-white focus:outline-none"
                         onClick={toggleMenu}
                     >
                         <svg
@@ -45,10 +63,12 @@ const Navbar = () => {
             </div>
 
             <div className={`md:hidden ${isOpen ? "block" : "hidden"} bg-gradient-to-r from-blue-300 to-blue-500 p-4`}>
-                <a href="#home" className="block text-lg font-medium text-white py-2 hover:text-blue-200 transition">Home</a>
-                <a href="#features" className="block text-lg font-medium text-white py-2 hover:text-blue-200 transition">Features</a>
-                <a href="#about" className="block text-lg font-medium text-white py-2 hover:text-blue-200 transition">About</a>
-                <a href="#contact" className="block text-lg font-medium text-white py-2 hover:text-blue-200 transition">Contact</a>
+                <a onClick={
+                    () => setIsOpen(false)
+                } href="#home" className="block text-lg font-medium text-white py-2 hover:text-blue-200 transition">Home</a>
+                <a onClick={
+                    () => setIsOpen(false)
+                } href="#contact" className="block text-lg font-medium text-white py-2 hover:text-blue-200 transition">Contact</a>
             </div>
         </nav>
     );

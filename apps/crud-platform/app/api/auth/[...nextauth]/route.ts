@@ -34,17 +34,15 @@ const handler = NextAuth({
       if (!user?.email) {
         throw new Error("Email is required for sign-in.");
       }
-
-      console.log("Sign-in user email:", user.email);
-
+    
       const existingUser = await prisma.user.findUnique({
         where: { email: user.email },
       });
-
+    
       if (!existingUser) {
         const apiKey = uuidv4();
         const apiUrl = `${process.env.NEXT_PUBLIC_NEXTAUTH_TODO_URL}/api/${apiKey}`;
-
+    
         await prisma.user.create({
           data: {
             email: user.email,
@@ -56,37 +54,46 @@ const handler = NextAuth({
             hasRecharged: false,
           },
         });
-      } else {
-        const existingAccount = await prisma.account.findFirst({
-          where: {
-            provider: account?.provider,
-            providerAccountId: account?.providerAccountId,
-          },
-        });
-
-        if (!existingAccount && account) {
-          await prisma.account.create({
-            data: {
-              userId: existingUser.id,
-              type: "oauth",
-              provider: account.provider,
-              providerAccountId: account.providerAccountId,
-              access_token: account.access_token,
-              refresh_token: account.refresh_token,
-              expires_at: account.expires_at,
-              token_type: account.token_type,
-              scope: account.scope,
-              id_token: account.id_token,
-              session_state: account.session_state,
-            },
-          });
-
-          console.log(`Linked Google account for ${user.email}`);
-        }
       }
 
+      console.log("User email:", user.email);
+    
+      // Ensure account is linked
+      const linkedUser = await prisma.user.findUnique({
+        where: { email: user.email },
+        include: { accounts: true },
+      });
+    
+      const isLinked = linkedUser?.accounts.some(
+        (acc) =>
+          acc.provider === account?.provider &&
+          acc.providerAccountId === account?.providerAccountId
+      );
+    
+      if (!isLinked && account) {
+        await prisma.account.create({
+          data: {
+            userId: linkedUser!.id,
+            type: "oauth",
+            provider: account.provider,
+            providerAccountId: account.providerAccountId,
+            access_token: account.access_token,
+            refresh_token: account.refresh_token,
+            expires_at: account.expires_at,
+            token_type: account.token_type,
+            scope: account.scope,
+            id_token: account.id_token,
+            session_state: account.session_state,
+          },
+        });
+      }
+
+      console.log("Account linked:", isLinked);
+      console.log("Linked user accounts:", linkedUser?.accounts);
+    
       return true;
     },
+    
 
     async session({ session }) {
       if (!session.user?.email) {

@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="bg-gradient-to-r from-blue-300 to-blue-500 text-white py-6 mt-12">
+        <footer id="contact" className="bg-gradient-to-r from-blue-300 to-blue-500 text-white py-6 mt-12">
             <div className="max-w-full mx-auto px-4 text-center">
                 <p className="text-lg font-medium">
                     Crud Platform &copy; {new Date().getFullYear()}

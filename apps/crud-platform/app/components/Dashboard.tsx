@@ -10,6 +10,8 @@ import { useState } from "react";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import Footer from "./Footer";
+import Features from "./Features";
+import About from "./About";
 
 export default function Page() {
 
@@ -51,7 +53,7 @@ export default function Page() {
       }
       <Navbar />
       <Hero />
-      <main id="#dashboard" className="p-8 max-w-2xl mx-auto bg-white/60 backdrop-blur-md shadow-xl rounded-3xl border border-blue-100 mt-10">
+      <main id="dashboard" className="p-8 max-w-2xl mx-auto bg-white/60 backdrop-blur-md shadow-xl rounded-3xl border border-blue-100 mt-10">
         <h1 className="text-3xl font-extrabold text-blue-600 mb-6 text-center drop-shadow-sm">
           Dashboard
         </h1>
@@ -71,7 +73,7 @@ export default function Page() {
                 </span>
               </p>
 
-              <div className="flex items-center gap-2">
+              <div className="max-w-lg flex items-center gap-2">
                 🆔{" "}
                 <span className="font-mono text-sm bg-blue-50 text-blue-800 px-2 py-1 rounded-md">
                   Your API Key: {session.user?.apiKey}
@@ -88,7 +90,7 @@ export default function Page() {
                 </button>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="max-w-lg flex items-center gap-2">
                 🌐{" "}
                 <span className="font-mono text-sm bg-green-50 text-green-800 px-2 py-1 rounded-md">
                   Your API URL: {session.user?.apiUrl}
@@ -160,14 +162,15 @@ export default function Page() {
               >
                 🔐 Sign in with Google
               </button>
-              <p className="text-zinc-600">
+              <p className="text-blue-400">
                 Please sign in to view your details.
               </p>
-              <p className="text-sm text-red-500">New users might have to sign in twice.</p>
             </div>
           </>
         )}
       </main>
+      <Features/>
+      <About/>
       <Footer />
     </>
   );
