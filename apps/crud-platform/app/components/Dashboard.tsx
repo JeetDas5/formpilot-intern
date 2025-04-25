@@ -7,6 +7,9 @@ import ErrorPage from "./ErrorPage";
 import Loader from "./Loader";
 import axios from "axios";
 import { useState } from "react";
+import Navbar from "./Navbar";
+import Hero from "./Hero";
+import Footer from "./Footer";
 
 export default function Page() {
 
@@ -46,9 +49,11 @@ export default function Page() {
       {
         isLoading && <Loader />
       }
-      <main className="p-8 max-w-2xl mx-auto bg-white/60 backdrop-blur-md shadow-xl rounded-3xl border border-blue-100 mt-10">
-        <h1 className="text-3xl font-extrabold text-blue-700 mb-6 text-center drop-shadow-sm">
-          FormPilot CRUD Platform
+      <Navbar />
+      <Hero />
+      <main id="#dashboard" className="p-8 max-w-2xl mx-auto bg-white/60 backdrop-blur-md shadow-xl rounded-3xl border border-blue-100 mt-10">
+        <h1 className="text-3xl font-extrabold text-blue-600 mb-6 text-center drop-shadow-sm">
+          Dashboard
         </h1>
 
         {session ? (
@@ -162,6 +167,7 @@ export default function Page() {
           </>
         )}
       </main>
+      <Footer />
     </>
   );
 }

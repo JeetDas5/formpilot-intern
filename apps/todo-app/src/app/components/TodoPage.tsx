@@ -6,6 +6,8 @@ import { useState, useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "./Loader";
 import { CrudLibrary, CrudClientConfig } from "jeet-kiit-crud"
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 
 export default function TodoPage() {
@@ -124,62 +126,66 @@ export default function TodoPage() {
   };
 
   return (
-    <main className="min-h-screen px-6 py-10 max-w-md mx-auto bg-gradient-to-br from-blue-50 via-white to-green-50 text-zinc-900 transition shadow-xl rounded-3xl border border-blue-100">
-      {loading && <Loader />}
-      <Toaster position="top-right" />
+    <>
+    <Navbar/>
+      <main className="min-h-screen mt-10 px-6 py-10 max-w-md mx-auto bg-gradient-to-br from-blue-50 via-white to-green-50 text-zinc-900 transition shadow-xl rounded-3xl border border-blue-100">
+        {loading && <Loader />}
+        <Toaster position="top-right" />
 
-      <h1 className="text-4xl font-extrabold mb-10 text-center text-blue-700 drop-shadow-sm">
-        📝 FormPilot Todos
-      </h1>
+        <h1 className="text-4xl font-extrabold mb-10 text-center text-blue-700 drop-shadow-sm">
+          📝 FormPilot Todos
+        </h1>
 
-      <div className="flex gap-3 mb-6">
-        <input
-          ref={inputRef}
-          className="flex-1 border border-blue-200 bg-white px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 text-base shadow-sm transition"
-          placeholder="Write a task..."
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <button
-          onClick={editId ? handleUpdate : handleCreate}
-          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-5 py-3 rounded-xl font-semibold shadow-md transition cursor-pointer"
-        >
-          {editId ? "Update" : "Add"}
-        </button>
-      </div>
-
-      <div className="mb-4 text-center">
-        <span className="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm shadow-sm">
-          🔋 Requests Used: {credits}/{creditLimit}
-        </span>
-      </div>
-
-      <ul className="mt-6 space-y-3">
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className="border border-zinc-200 rounded-xl px-5 py-4 flex justify-between items-center bg-white shadow-md transition duration-200 hover:bg-blue-50"
+        <div className="flex gap-3 mb-6">
+          <input
+            ref={inputRef}
+            className="flex-1 border border-blue-200 bg-white px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 text-base shadow-sm transition"
+            placeholder="Write a task..."
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+          <button
+            onClick={editId ? handleUpdate : handleCreate}
+            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-5 py-3 rounded-xl font-semibold shadow-md transition cursor-pointer"
           >
-            <span className="truncate max-w-[60%] text-lg text-zinc-800 font-medium">
-              {todo.value}
-            </span>
-            <div className="flex gap-3 text-sm font-medium">
-              <button
-                className="text-blue-500 hover:text-blue-700 transition cursor-pointer"
-                onClick={() => handleEdit(todo.id, todo.value)}
-              >
-                Edit
-              </button>
-              <button
-                className="text-red-500 hover:text-red-700 transition cursor-pointer"
-                onClick={() => handleDelete(todo.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </main>
+            {editId ? "Update" : "Add"}
+          </button>
+        </div>
+
+        <div className="mb-4 text-center">
+          <span className="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm shadow-sm">
+            🔋 Requests Used: {credits}/{creditLimit}
+          </span>
+        </div>
+
+        <ul className="mt-6 space-y-3">
+          {todos.map((todo) => (
+            <li
+              key={todo.id}
+              className="border border-zinc-200 rounded-xl px-5 py-4 flex justify-between items-center bg-white shadow-md transition duration-200 hover:bg-blue-50"
+            >
+              <span className="truncate max-w-[60%] text-lg text-zinc-800 font-medium">
+                {todo.value}
+              </span>
+              <div className="flex gap-3 text-sm font-medium">
+                <button
+                  className="text-blue-500 hover:text-blue-700 transition cursor-pointer"
+                  onClick={() => handleEdit(todo.id, todo.value)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="text-red-500 hover:text-red-700 transition cursor-pointer"
+                  onClick={() => handleDelete(todo.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </main>
+      <Footer/>
+    </>
   );
 }
