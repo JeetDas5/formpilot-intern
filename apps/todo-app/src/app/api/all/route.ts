@@ -3,6 +3,13 @@ import { validateRequest } from "../../lib/middleware";
 import { NextResponse } from "next/server";
 import { corsHeaders } from "../../lib/cors";
 
+export async function OPTIONS() {
+  return NextResponse.json({}, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
 export async function GET(req: Request) {
   const validation = await validateRequest(req, true);
 
@@ -32,5 +39,5 @@ export async function GET(req: Request) {
 
   
 
-  return NextResponse.json(data);
+  return NextResponse.json(data,{ status: 200, headers: corsHeaders });
 }

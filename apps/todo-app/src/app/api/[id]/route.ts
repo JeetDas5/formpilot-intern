@@ -3,6 +3,13 @@ import { validateRequest } from "../../lib/middleware";
 import { NextResponse } from "next/server";
 import { corsHeaders } from "../../lib/cors";
 
+export async function OPTIONS() {
+  return NextResponse.json({}, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }
@@ -75,5 +82,5 @@ export async function DELETE(
     where: { id: params.id, userId: validation.user!.id },
   });
 
-  return NextResponse.json({ status: "deleted successfully" });
+  return NextResponse.json({ status: "deleted successfully" }, { status: 200, headers: corsHeaders });
 }

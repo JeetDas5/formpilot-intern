@@ -4,6 +4,13 @@ import { validateRequest } from "../../lib/middleware";
 import { corsHeaders } from "../../lib/cors";
 import { NextResponse } from "next/server";
 
+export async function OPTIONS() {
+  return NextResponse.json({}, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
 export async function GET(req: Request) {
   const validation = await validateRequest(req, true);
 
@@ -44,5 +51,5 @@ export async function GET(req: Request) {
     );
   }
 
-  return NextResponse.json({ requestCount: user.requestLimit });
+  return NextResponse.json({ requestCount: user.requestLimit },{ status: 200, headers: corsHeaders });
 }
